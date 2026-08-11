@@ -9,7 +9,9 @@ import path from "path";
 export default defineConfig({
   plugins: [
     tanstackStart(),
-    nitro(),
+    nitro({
+      preset: "node-server",
+    }),
     react(),
     tailwindcss(),
     tsConfigPaths(),
