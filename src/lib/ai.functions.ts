@@ -152,7 +152,20 @@ Respond strictly in valid JSON format matching this schema:
         return { success: false, error: "Empty response from Gemini AI model." };
       }
 
-      const parsed = JSON.parse(textResponse);
+      // Gemini can emit extra prose, markdown fences, or trailing text around the JSON.
+      // Robustly extract the outermost { ... } block so stray text is ignored entirely.
+      const jsonMatch = textResponse.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) {
+        return {
+          success: false,
+          error: "AI returned a response with no valid JSON object. Try again.",
+        };
+      }
+      const sanitized = jsonMatch[0]
+        .replace(/,\s*([}\]])/g, "$1") // remove trailing commas
+        .trim();
+
+      const parsed = JSON.parse(sanitized);
       return {
         success: true,
         error: null,
