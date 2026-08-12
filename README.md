@@ -140,9 +140,3 @@ Run the compiled server output:
 ```bash
 node dist/server/server.js
 ```
-
----
-
-## License
-
-MIT
