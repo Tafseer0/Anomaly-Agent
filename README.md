@@ -2,8 +2,7 @@
 
 A full-stack Web application for automated business metric surveillance. Upload Excel (`.xlsx`) or CSV files to establish statistical baselines, detect significant metric deviations ($Z$-score anomalies), generate structured summary reports, and trigger automated email notifications to stakeholders.
 
-**Magic Link1 :** | [🚀 Live Demo](https://www.anomalyagent.jo3.org)
-**Magic Link2 :** | [🚀 Live Demo2](https://anomalyai.up.railway.app)
+**Magic Link1 :** | [🚀 Live Demo](https://anomaly-agent-rust.vercel.app/)
 
 ---
 
