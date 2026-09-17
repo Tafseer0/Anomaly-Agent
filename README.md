@@ -118,25 +118,45 @@ Open `http://localhost:8080` in your browser.
 
 ## Production Deployment
 
-This project uses TanStack Start and Nitro under the hood, allowing seamless deployment to multiple targets without extra adapter code.
+This project uses **TanStack Start** and **Nitro** under the hood, allowing seamless deployment to multiple serverless and Node.js platforms without extra adapter code.
 
-### Vercel / Netlify
+### Deploying to Vercel (Recommended - 100% Free Tier)
 
-1. Connect the repository to your hosting dashboard.
-2. Set the environment variables (`MAILJET_API_KEY`, `MAILJET_SECRET_KEY`, `MAILJET_FROM_EMAIL`).
-3. Build command: `npm run build`
+Vercel is the recommended hosting platform for TanStack Start applications:
+
+1. **Push your repository** to GitHub (or GitLab / Bitbucket).
+2. Go to [Vercel](https://vercel.com/) and click **Add New Project**.
+3. Select and import your `Anomaly-Agent` repository.
+4. In the **Configure Project** screen:
+   - **Framework Preset**: Select **Vite** (or leave as Auto-Detect).
+   - **Build Command**: `npm run build`
+   - **Output Directory**: Leave as default (`.vercel/output` is generated automatically by Nitro).
+5. Open **Environment Variables** section and add:
+   - `MAILJET_API_KEY` = your Mailjet API key
+   - `MAILJET_SECRET_KEY` = your Mailjet Secret key
+   - `MAILJET_FROM_EMAIL` = your verified sender email
+   - `GEMINI_API_KEY` = (Optional) your Gemini AI API key
+6. Click **Deploy**. Vercel will build and launch your application with automatic SSL and global CDN.
+
+---
+
+### Alternative Free Deployment Options
+
+#### Netlify (Free Tier)
+1. Import repository on [Netlify](https://www.netlify.com/).
+2. Build command: `npm run build`
+3. Add Environment Variables (`MAILJET_API_KEY`, `MAILJET_SECRET_KEY`, `MAILJET_FROM_EMAIL`).
 4. Deploy.
 
-### Node.js / Docker Server
+#### Render / Docker / Node Server
+If you prefer running a standalone Node.js server (e.g. on Render Free Web Service, Docker, or VPS):
+1. Build the production output:
+   ```bash
+   npm run build
+   ```
+2. Start the Nitro server:
+   ```bash
+   npm start
+   # or: node .output/server/index.mjs
+   ```
 
-Build the production assets:
-
-```bash
-npm run build
-```
-
-Run the compiled server output:
-
-```bash
-node dist/server/server.js
-```
